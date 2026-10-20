@@ -1,0 +1,136 @@
+/**
+ * GameControls component styles - Reset button and difficulty selector
+ */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.resetButton,
+.clearButton {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.resetButton {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.resetButton:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.clearButton {
+  background-color: var(--color-bg-lighter);
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+}
+
+.clearButton:hover:not(:disabled) {
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.resetButton:active:not(:disabled),
+.clearButton:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.difficultySelector {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.select {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 1rem;
+  background-color: var(--color-bg-lighter);
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.select:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.select:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .controls {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .resetButton,
+  .clearButton {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.875rem;
+  }
+
+  .difficultySelector {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-sm);
+  }
+
+  .label {
+    font-size: 0.875rem;
+  }
+
+  .select {
+    font-size: 0.875rem;
+  }
+}

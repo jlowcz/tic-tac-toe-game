@@ -1,0 +1,145 @@
+/**
+ * Board component styles - 3x3 grid layout
+ */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-lighter);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+}
+
+/* Win line overlay */
+.winLine {
+  position: absolute;
+  background-color: var(--color-success);
+  border-radius: var(--radius-sm);
+  z-index: 10;
+  animation: drawLine var(--transition-slow) ease-out;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+}
+
+@keyframes drawLine {
+  from {
+    transform: scaleX(0) scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1) scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Horizontal lines */
+.winLine0-1-2 {
+  top: calc(16.67% - 2px);
+  left: 5%;
+  width: 90%;
+  height: 4px;
+  transform-origin: left center;
+}
+
+.winLine3-4-5 {
+  top: calc(50% - 2px);
+  left: 5%;
+  width: 90%;
+  height: 4px;
+  transform-origin: left center;
+}
+
+.winLine6-7-8 {
+  top: calc(83.33% - 2px);
+  left: 5%;
+  width: 90%;
+  height: 4px;
+  transform-origin: left center;
+}
+
+/* Vertical lines */
+.winLine0-3-6 {
+  left: calc(16.67% - 2px);
+  top: 5%;
+  width: 4px;
+  height: 90%;
+  transform-origin: center top;
+}
+
+.winLine1-4-7 {
+  left: calc(50% - 2px);
+  top: 5%;
+  width: 4px;
+  height: 90%;
+  transform-origin: center top;
+}
+
+.winLine2-5-8 {
+  left: calc(83.33% - 2px);
+  top: 5%;
+  width: 4px;
+  height: 90%;
+  transform-origin: center top;
+}
+
+/* Diagonal lines */
+.winLine0-4-8 {
+  top: 50%;
+  left: 50%;
+  width: 125%;
+  height: 4px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transform-origin: center;
+}
+
+.winLine2-4-6 {
+  top: 50%;
+  left: 50%;
+  width: 125%;
+  height: 4px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transform-origin: center;
+}
+
+/* Responsive sizing */
+@media (max-width: 640px) {
+  .board {
+    max-width: 320px;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+  }
+
+  .winLine {
+    height: 3px;
+  }
+
+  .winLine0-3-6,
+  .winLine1-4-7,
+  .winLine2-5-8 {
+    width: 3px;
+  }
+}
+
+@media (min-width: 768px) {
+  .board {
+    max-width: 480px;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+  }
+
+  .winLine {
+    height: 5px;
+  }
+
+  .winLine0-3-6,
+  .winLine1-4-7,
+  .winLine2-5-8 {
+    width: 5px;
+  }
+}

@@ -1,0 +1,111 @@
+/**
+ * Cell component styles - Individual board square
+ */
+
+.cell {
+  width: 100%;
+  height: 100%;
+  min-height: 80px;
+  background-color: var(--color-bg-light);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.cell:hover:not(:disabled) {
+  background-color: var(--color-bg-lighter);
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.cell:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+/* Mark (X or O) styling */
+.mark {
+  display: block;
+  animation: markAppear var(--transition-normal);
+}
+
+@keyframes markAppear {
+  from {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* X styling */
+.cell:has(.mark:first-child) .mark {
+  color: var(--color-player-x);
+}
+
+/* O styling */
+.cell:has(.mark:last-child) .mark {
+  color: var(--color-player-o);
+}
+
+/* Apply player colors based on content */
+.filled .mark:empty::before {
+  content: '';
+}
+
+/* Winning cell highlight */
+.winning {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  animation: winningPulse var(--transition-slow) infinite;
+}
+
+@keyframes winningPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+  }
+}
+
+.winning .mark {
+  color: var(--color-bg);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive sizing */
+@media (max-width: 640px) {
+  .cell {
+    min-height: 60px;
+    font-size: 2rem;
+    border-width: 1.5px;
+  }
+}
+
+@media (min-width: 768px) {
+  .cell {
+    min-height: 100px;
+    font-size: 3rem;
+  }
+}
+
+/* Focus state */
+.cell:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: -3px;
+  z-index: 1;
+}

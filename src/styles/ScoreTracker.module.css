@@ -1,0 +1,115 @@
+/**
+ * ScoreTracker component styles - Score display
+ */
+
+.scoreTracker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.scoreItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-lighter);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.scoreItem:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.scoreLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.scoreValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  min-width: 40px;
+  text-align: center;
+  animation: scoreUpdate var(--transition-normal) ease-out;
+}
+
+@keyframes scoreUpdate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+    color: var(--color-primary);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Color coding for different score items */
+.scoreItem:first-child {
+  border-bottom: 3px solid var(--color-player-x);
+}
+
+.scoreItem:first-child .scoreValue {
+  color: var(--color-player-x);
+}
+
+.scoreItem:last-child {
+  border-bottom: 3px solid var(--color-player-o);
+}
+
+.scoreItem:last-child .scoreValue {
+  color: var(--color-player-o);
+}
+
+.scoreItem:nth-child(2) {
+  border-bottom: 3px solid var(--color-warning);
+}
+
+.scoreItem:nth-child(2) .scoreValue {
+  color: var(--color-warning);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .scoreTracker {
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+
+  .scoreItem {
+    padding: var(--spacing-sm);
+  }
+
+  .scoreLabel {
+    font-size: 0.75rem;
+  }
+
+  .scoreValue {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .scoreTracker {
+    padding: var(--spacing-xl);
+  }
+
+  .scoreValue {
+    font-size: 2rem;
+  }
+}
